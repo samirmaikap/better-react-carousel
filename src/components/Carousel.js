@@ -105,7 +105,8 @@ const Carousel = ({
   dot,
   containerClassName = '',
   containerStyle = {},
-  children
+  children,
+  onPageChange
 }) =>
 {
   const [currentPage, setCurrentPage] = useState(0)
@@ -146,6 +147,13 @@ const Carousel = ({
     autoplayProp,
     parseGap
   ])
+  
+  useEffect(() => {
+    if(onPageChange) {
+      console.log('on change call');
+      onPageChange(currentPage);
+    }
+  }, [currentPage])
 
   const handleRailWrapperResize = useCallback(() =>
   {
